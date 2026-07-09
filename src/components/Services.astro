@@ -1,0 +1,24 @@
+---
+import Section from './Section.astro';
+import { services } from '../data/services';
+---
+
+<Section id="services" eyebrow="Services" title="What I can do for your team">
+  <div class="grid gap-6 md:grid-cols-2">
+    {
+      services.map((service) => (
+        <article class="rounded-lg border border-zinc-800 p-6 transition hover:border-zinc-700">
+          <h3 class="text-lg font-semibold text-white">{service.title}</h3>
+          <p class="mt-3 text-zinc-400">{service.description}</p>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            {service.tags.map((tag) => (
+              <li class="rounded-full border border-zinc-800 px-3 py-1 text-xs text-zinc-400">
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+</Section>

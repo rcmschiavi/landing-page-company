@@ -1,0 +1,32 @@
+---
+import { site } from '../data/site';
+---
+
+<section id="contact" class="scroll-mt-20 py-20 md:py-28">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="rounded-2xl border border-zinc-800 bg-zinc-900/50 px-6 py-16 text-center md:px-16">
+      <h2 class="text-3xl font-bold tracking-tight text-white md:text-4xl">
+        Have a backend project or a team that needs senior hands?
+      </h2>
+      <p class="mx-auto mt-4 max-w-xl text-lg text-zinc-400">
+        Tell me about it — I usually reply within one business day.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href={`mailto:${site.email}`}
+          class="rounded-md bg-accent px-6 py-3 font-semibold text-zinc-950 transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-white"
+        >
+          {site.email}
+        </a>
+        <a
+          href={site.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-md border border-zinc-700 px-6 py-3 font-semibold text-zinc-200 transition hover:border-zinc-500 hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          Connect on LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

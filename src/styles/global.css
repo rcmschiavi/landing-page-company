@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  /* Single accent color for the whole site (~emerald-400).
+     Change this one line to rebrand. */
+  --color-accent: oklch(0.765 0.177 163.22);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-zinc-950 text-zinc-300 antialiased;
+}
+
+::selection {
+  @apply bg-accent text-zinc-950;
+}

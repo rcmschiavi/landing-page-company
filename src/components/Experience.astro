@@ -1,0 +1,45 @@
+---
+import Section from './Section.astro';
+import { experience, earlierRoles } from '../data/experience';
+---
+
+<Section id="experience" eyebrow="Experience" title="Track record">
+  <ol class="relative space-y-12 border-l border-zinc-800 pl-8">
+    {
+      experience.map((entry) => (
+        <li class="relative">
+          <span
+            class="absolute top-1.5 -left-[2.4rem] h-3 w-3 rounded-full border-2 border-zinc-950 bg-accent"
+            aria-hidden="true"
+          />
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <h3 class="text-lg font-semibold text-white">{entry.company}</h3>
+            <span class="text-sm text-zinc-400">
+              {entry.domain} · {entry.location}
+            </span>
+          </div>
+          <div class="mt-1 space-y-0.5">
+            {entry.roles.map((role) => (
+              <p class="text-sm text-zinc-400">
+                <span class="font-medium text-zinc-200">{role.title}</span> · {role.period}
+              </p>
+            ))}
+          </div>
+          <ul class="mt-4 list-disc space-y-2 pl-5 text-zinc-400 marker:text-zinc-600">
+            {entry.bullets.map((bullet) => (
+              <li>{bullet}</li>
+            ))}
+          </ul>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            {entry.tech.map((tech) => (
+              <li class="rounded-full border border-zinc-800 px-3 py-1 text-xs text-zinc-400">
+                {tech}
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+  </ol>
+  <p class="mt-12 border-t border-zinc-800 pt-6 text-sm text-zinc-400">{earlierRoles}</p>
+</Section>

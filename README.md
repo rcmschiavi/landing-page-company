@@ -1,43 +1,37 @@
-# Astro Starter Kit: Minimal
+# Landing Page — Contract Software Engineering
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Personal landing page for winning contract/staff-augmentation work worldwide. Built with [Astro](https://astro.build) + Tailwind CSS v4, fully static, zero client-side JavaScript.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Editing content
 
-## 🚀 Project Structure
+All copy lives in `src/data/` — you never need to touch the components to update content:
 
-Inside of your Astro project, you'll see the following folders and files:
+| File                     | What it controls                                              |
+| :----------------------- | :------------------------------------------------------------ |
+| `src/data/site.ts`       | Name, company, email, LinkedIn URL, SEO title/description, nav |
+| `src/data/services.ts`   | The four service cards                                         |
+| `src/data/experience.ts` | The experience timeline + "earlier roles" line                 |
+| `src/data/stack.ts`      | The grouped tech-stack pills                                   |
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+**Placeholders still to fill in** (all in `src/data/site.ts` unless noted):
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- `companyName` — your company's name
+- `linkedin` — your LinkedIn profile URL
+- Production domain — in `astro.config.mjs` (`site`) and `public/robots.txt`
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+The accent color is defined once in `src/styles/global.css` (`--color-accent`).
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Commands
 
-## 🧞 Commands
+| Command           | Action                                    |
+| :---------------- | :---------------------------------------- |
+| `npm install`     | Install dependencies                      |
+| `npm run dev`     | Dev server at `localhost:4321`            |
+| `npm run build`   | Production build to `./dist/`             |
+| `npm run preview` | Serve the production build locally        |
 
-All commands are run from the root of the project, from a terminal:
+## Deploying
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Push to a GitHub repo, then import it at [vercel.com](https://vercel.com) — Astro is auto-detected, no configuration needed. When you have a domain, add it in Vercel and update `site` in `astro.config.mjs` + the sitemap URL in `public/robots.txt`.
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Source material for the copy is kept in `docs/references/`.

@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og-image.png', Astro.site);
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.ownerName,
+  jobTitle: site.role,
+  email: `mailto:${site.email}`,
+  sameAs: [site.linkedin],
+  worksFor: { '@type': 'Organization', name: site.companyName },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{site.seo.title}</title>
+    <meta name="description" content={site.seo.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={site.seo.title} />
+    <meta property="og:description" content={site.seo.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={site.seo.title} />
+    <meta name="twitter:description" content={site.seo.description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

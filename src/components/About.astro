@@ -1,0 +1,46 @@
+---
+import Section from './Section.astro';
+import { site } from '../data/site';
+
+const facts = [
+  { label: 'Based in', value: 'Brazil — remote-first' },
+  { label: 'Hours', value: 'Strong overlap with US & EU time zones' },
+  { label: 'Languages', value: 'English & Portuguese' },
+  { label: 'Engagement', value: `B2B contract via ${site.companyName}` },
+];
+---
+
+<Section id="about" eyebrow="About" title="Who you'll be working with">
+  <div class="grid gap-10 md:grid-cols-[2fr_1fr]">
+    <div class="max-w-3xl space-y-4 text-lg text-zinc-400">
+      <p>
+        I came into software through mechatronics and robotics — simulating surgical robots and
+        patenting welding automation before moving into backend engineering. That background shows
+        up in how I work: systems thinking, careful testing, and a bias for solutions that hold up
+        in production.
+      </p>
+      <p>
+        For the last five years I've focused on fintech: business banking APIs, KYC onboarding,
+        payments, and the unglamorous-but-critical work of modernizing legacy systems while the
+        product keeps growing. I've also led a backend chapter, so I'm comfortable owning process
+        and technology decisions, not just tickets.
+      </p>
+      <p>
+        I work as an independent contractor through {site.companyName}, which means a clean B2B
+        engagement for your company — no employment overhead, straightforward invoicing.
+      </p>
+    </div>
+    <dl class="space-y-5 self-start rounded-lg border border-zinc-800 p-6">
+      {
+        facts.map((fact) => (
+          <div>
+            <dt class="text-xs font-semibold tracking-wide uppercase text-zinc-400">
+              {fact.label}
+            </dt>
+            <dd class="mt-1 text-sm text-zinc-200">{fact.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</Section>
