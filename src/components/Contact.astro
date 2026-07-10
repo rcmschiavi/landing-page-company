@@ -18,6 +18,15 @@ import { site } from '../data/site';
         >
           {site.email}
         </a>
+        <button
+          type="button"
+          id="copy-email"
+          data-email={site.email}
+          class="min-w-36 cursor-pointer rounded-md border border-zinc-700 px-6 py-3 font-semibold text-zinc-200 transition hover:border-zinc-500 hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
+          aria-label={`Copy ${site.email} to clipboard`}
+        >
+          Copy email
+        </button>
         <a
           href={site.linkedin}
           target="_blank"
@@ -30,3 +39,21 @@ import { site } from '../data/site';
     </div>
   </div>
 </section>
+
+<script>
+  const btn = document.getElementById('copy-email');
+  btn?.addEventListener('click', async () => {
+    const email = btn.dataset.email ?? '';
+    try {
+      await navigator.clipboard.writeText(email);
+      btn.textContent = 'Copied ✓';
+    } catch {
+      // Clipboard API unavailable — show the address for manual copying.
+      btn.textContent = email;
+      return;
+    }
+    setTimeout(() => {
+      btn.textContent = 'Copy email';
+    }, 1600);
+  });
+</script>
