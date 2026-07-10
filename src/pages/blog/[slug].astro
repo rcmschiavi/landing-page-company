@@ -8,11 +8,16 @@ import { site } from '../../data/site';
 import { formatDate } from '../../utils/date';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+  const posts = (await getCollection('blog')).sort(
+    (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
+  );
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: { post, older: posts[i - 1] ?? null, newer: posts[i + 1] ?? null },
+  }));
 }
 
-const { post } = Astro.props;
+const { post, older, newer } = Astro.props;
 const { Content } = await render(post);
 ---
 
@@ -46,6 +51,37 @@ const { Content } = await render(post);
     >
       <Content />
     </article>
+    {
+      (older || newer) && (
+        <nav
+          class="mt-16 flex flex-col justify-between gap-6 border-t border-zinc-800 pt-8 sm:flex-row"
+          aria-label="Post navigation"
+        >
+          {older ? (
+            <a href={`/blog/${older.id}/`} class="group max-w-sm">
+              <span class="text-xs font-semibold tracking-wide uppercase text-zinc-500">
+                &larr; Older
+              </span>
+              <span class="mt-1 block font-semibold text-zinc-300 transition group-hover:text-white">
+                {older.data.title}
+              </span>
+            </a>
+          ) : (
+            <span />
+          )}
+          {newer && (
+            <a href={`/blog/${newer.id}/`} class="group max-w-sm sm:text-right">
+              <span class="text-xs font-semibold tracking-wide uppercase text-zinc-500">
+                Newer &rarr;
+              </span>
+              <span class="mt-1 block font-semibold text-zinc-300 transition group-hover:text-white">
+                {newer.data.title}
+              </span>
+            </a>
+          )}
+        </nav>
+      )
+    }
   </main>
   <Footer />
 </BaseLayout>
