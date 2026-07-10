@@ -1,9 +1,10 @@
 ---
 import { highlights } from '../data/stack';
 
-// Loose 5-column grid with jitter, denser toward the edges and right so
-// the faded chips stay light behind the hero copy. Drift is ±15px;
-// keep left ≤ ~84% so wide chips don't clip mid-word.
+// Hero backdrop with scroll parallax: chips drift continuously and, in
+// browsers with scroll-driven animations, rise at different speeds as
+// the hero scrolls out of view. Loose 5-column grid with jitter; drift
+// is ±15px; keep left ≤ ~84% so wide chips don't clip mid-word.
 const slots = [
   { left: '4%', top: '8%' },
   { left: '22%', top: '4%' },
@@ -26,6 +27,9 @@ const slots = [
   { left: '6%', top: '80%' },
   { left: '84%', top: '88%' },
 ];
+
+// Deterministic per-chip parallax distance (40–160px) for depth.
+const drift = (i: number) => 40 + ((i * 37) % 121);
 ---
 
 <div
@@ -36,7 +40,7 @@ const slots = [
     highlights.slice(0, slots.length).map((skill, i) => (
       <span
         class="floating-skill absolute rounded-full border border-accent/30 bg-zinc-900/70 px-4 py-2 text-lg whitespace-nowrap text-accent"
-        style={`left:${slots[i].left}; top:${slots[i].top}; animation-delay:-${i}s;`}
+        style={`left:${slots[i].left}; top:${slots[i].top}; --delay:-${i}s; --drift:-${drift(i)}px;`}
       >
         {skill}
       </span>
@@ -45,9 +49,26 @@ const slots = [
 </div>
 
 <style>
+  .floating-skills {
+    view-timeline-name: --skills-exit;
+  }
   .floating-skill {
     animation: float 10s ease-in-out infinite alternate;
+    animation-delay: var(--delay);
     will-change: translate;
+  }
+  /* Scroll parallax where supported: as the hero exits the viewport,
+     each chip rises by its own --drift. Uses transform, which composes
+     with the translate/rotate drift; other browsers keep the drift only. */
+  @supports (animation-timeline: view()) {
+    .floating-skill {
+      animation:
+        float 10s ease-in-out infinite alternate,
+        parallax linear both;
+      animation-delay: var(--delay), 0s;
+      animation-timeline: auto, --skills-exit;
+      animation-range: normal, exit;
+    }
   }
   @keyframes float {
     0% {
@@ -63,11 +84,17 @@ const slots = [
       rotate: -3deg;
     }
   }
+  @keyframes parallax {
+    to {
+      transform: translateY(var(--drift));
+    }
+  }
   @media (prefers-reduced-motion: reduce) {
     .floating-skill {
       animation: none;
       rotate: none;
       translate: none;
+      transform: none;
     }
   }
 </style>
