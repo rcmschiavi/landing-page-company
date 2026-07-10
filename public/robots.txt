@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://PLACEHOLDER-DOMAIN.com/sitemap-index.xml
+Sitemap: https://rodolfo.schiavi.me/sitemap-index.xml

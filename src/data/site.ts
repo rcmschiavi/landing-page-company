@@ -6,7 +6,7 @@ export const site = {
   // TODO: confirm the name you want displayed publicly
   ownerName: 'Rodolfo Schiavi',
   ownerInitials: 'RS',
-  role: 'Senior Backend Engineer',
+  role: 'Software Engineer',
   // TODO: replace with your company's legal/trade name
   companyName: 'Schiavi Systems & Software',
   email: 'rodolfocmschiavi@gmail.com',
@@ -16,9 +16,9 @@ export const site = {
 
   seo: {
     title:
-      'Rodolfo Schiavi — Senior Backend Engineer for Fintech | Contract Development & Staff Augmentation',
+      'Rodolfo Schiavi — Senior Backend Engineer | Contract Development & Staff Augmentation',
     description:
-      'Software engineer with 6+ years in fintech backend systems — Node.js, Java, Python, AWS. Available for contract development and staff augmentation worldwide.',
+      'Senior backend engineer with 8+ years building fintech, AI, and high-demand systems in Node.js, Go, Java, and Python. Contract development and staff augmentation worldwide.',
   },
 
   nav: [

@@ -17,6 +17,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# personal reference material — never publish
+docs/references/
+
 # macOS-specific files
 .DS_Store
 

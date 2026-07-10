@@ -7,8 +7,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: replace with the real production domain once registered
-  site: 'https://PLACEHOLDER-DOMAIN.com',
+  site: 'https://rodolfo.schiavi.me',
   vite: {
     plugins: [tailwindcss()]
   },
