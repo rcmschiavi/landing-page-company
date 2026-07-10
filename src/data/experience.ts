@@ -9,6 +9,19 @@ export interface ExperienceEntry {
 
 export const experience: ExperienceEntry[] = [
   {
+    company: 'Independent Consulting',
+    domain: 'Confidential clients worldwide',
+    roles: [{ title: 'Contract Software Engineer', period: 'Ongoing' }],
+    location: 'Remote',
+    bullets: [
+      'Building systems from scratch and refactoring MVPs into scalable architectures.',
+      'Integrating logging and tracking so teams can observe and debug production behavior.',
+      'Improving the performance of high-demand processes and validating system security.',
+      'Implementing AI workflows and other systems engineering work.',
+    ],
+    tech: ['Node.js', 'Go', 'AWS', 'Python'],
+  },
+  {
     company: 'Celcoin',
     domain: 'Fintech',
     roles: [{ title: 'Senior Software Engineer', period: 'Jul 2024 – Present' }],
@@ -17,7 +30,7 @@ export const experience: ExperienceEntry[] = [
       'Building new features, projects, and services in Node.js and Java on a cloud-hosted banking platform.',
       'Driving the refactoring and upgrade of legacy projects to current versions and patterns, unblocking new development as the products grow.',
     ],
-    tech: ['Node.js', 'Java', 'Cloud'],
+    tech: ['Node.js', 'Java', 'Cloud', 'Go', 'AWS'],
   },
   {
     company: 'Linker',
@@ -32,7 +45,7 @@ export const experience: ExperienceEntry[] = [
       'Python microservices over MariaDB, PostgreSQL, DynamoDB, and Redis, with a Node.js interface layer on AWS Lambda.',
       'As Chapter Lead, coordinated the backend team on technical debt, process improvements, and technology choices.',
     ],
-    tech: ['Python', 'Node.js', 'AWS Lambda', 'PostgreSQL', 'DynamoDB', 'Redis'],
+    tech: ['Python', 'Node.js', 'AWS', 'PostgreSQL', 'DynamoDB', 'Redis'],
   },
   {
     company: 'Marlex',

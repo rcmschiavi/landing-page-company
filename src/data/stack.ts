@@ -6,7 +6,7 @@ export interface StackGroup {
 export const stack: StackGroup[] = [
   {
     label: 'Languages & Runtimes',
-    items: ['Node.js / TypeScript', 'Java', 'Python'],
+    items: ['Node.js / TypeScript', 'Java', 'Python', 'Go'],
   },
   {
     label: 'Cloud & Infrastructure',

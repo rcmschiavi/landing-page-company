@@ -4,21 +4,21 @@
  */
 export const site = {
   // TODO: confirm the name you want displayed publicly
-  ownerName: 'Rod Cavour',
-  ownerInitials: 'RC',
+  ownerName: 'Rodolfo Schiavi',
+  ownerInitials: 'RS',
   role: 'Senior Backend Engineer',
   // TODO: replace with your company's legal/trade name
-  companyName: 'COMPANY_NAME',
-  email: 'rod.cavour@gmail.com',
+  companyName: 'Schiavi Systems & Software',
+  email: 'rodolfocmschiavi@gmail.com',
   // TODO: replace with your LinkedIn profile URL
-  linkedin: 'https://www.linkedin.com/in/PLACEHOLDER',
+  linkedin: 'https://www.linkedin.com/in/rodolfo-schiavi',
   location: 'Brazil',
 
   seo: {
     title:
-      'Rod Cavour — Senior Backend Engineer for Fintech | Contract Development & Staff Augmentation',
+      'Rodolfo Schiavi — Senior Backend Engineer for Fintech | Contract Development & Staff Augmentation',
     description:
-      'Senior software engineer with 6+ years in fintech backend systems — Node.js, Java, Python, AWS. Available for contract development and staff augmentation worldwide.',
+      'Software engineer with 6+ years in fintech backend systems — Node.js, Java, Python, AWS. Available for contract development and staff augmentation worldwide.',
   },
 
   nav: [
