@@ -16,7 +16,10 @@ import { site } from '../data/site';
         site.nav.map((item) => (
           <a
             href={item.href}
-            class="hidden text-sm text-zinc-400 transition hover:text-white focus-visible:ring-2 focus-visible:ring-accent md:inline"
+            class:list={[
+              'text-sm text-zinc-400 transition hover:text-white focus-visible:ring-2 focus-visible:ring-accent',
+              'mobile' in item && item.mobile ? 'inline' : 'hidden md:inline',
+            ]}
           >
             {item.label}
           </a>

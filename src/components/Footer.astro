@@ -9,13 +9,18 @@ const year = new Date().getFullYear();
     class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-zinc-400 md:flex-row"
   >
     <p>© {year} {site.companyName} · {site.ownerName}, {site.role}</p>
-    <a
-      href={site.linkedin}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="transition hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
-    >
-      LinkedIn
-    </a>
+    <div class="flex gap-5">
+      <a href="/blog" class="transition hover:text-white focus-visible:ring-2 focus-visible:ring-accent">
+        Blog
+      </a>
+      <a
+        href={site.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="transition hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
+      >
+        LinkedIn
+      </a>
+    </div>
   </div>
 </footer>

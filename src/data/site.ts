@@ -26,6 +26,7 @@ export const site = {
     { label: 'Stack', href: '/#stack' },
     { label: 'Experience', href: '/#experience' },
     { label: 'About', href: '/#about' },
-    { label: 'Blog', href: '/blog' },
+    // mobile: true → link stays visible in the header below the md breakpoint
+    { label: 'Blog', href: '/blog', mobile: true },
   ],
 } as const;
