@@ -9,7 +9,7 @@ export const site = {
   role: 'Software Engineer',
   // TODO: replace with your company's legal/trade name
   companyName: 'Schiavi Systems & Software',
-  email: 'rodolfocmschiavi@gmail.com',
+  email: 'rodolfo.schiavi@outlook.com',
   // TODO: replace with your LinkedIn profile URL
   linkedin: 'https://www.linkedin.com/in/rodolfo-schiavi',
   location: 'Brazil',
