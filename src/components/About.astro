@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import Section from './Section.astro';
 import { site } from '../data/site';
+import workspace from '../assets/workspace.jpg';
 
 const facts = [
   { label: 'Based in', value: 'Brazil — remote-first' },
@@ -30,17 +32,26 @@ const facts = [
         engagement for your company — no employment overhead, straightforward invoicing.
       </p>
     </div>
-    <dl class="space-y-5 self-start rounded-lg border border-zinc-800 p-6">
-      {
-        facts.map((fact) => (
-          <div>
-            <dt class="text-xs font-semibold tracking-wide uppercase text-zinc-400">
-              {fact.label}
-            </dt>
-            <dd class="mt-1 text-sm text-zinc-200">{fact.value}</dd>
-          </div>
-        ))
-      }
-    </dl>
+    <div class="space-y-6 self-start">
+      <Image
+        src={workspace}
+        alt="My workstation: dual monitors with code, split ergonomic keyboards, and a microphone"
+        widths={[480, 760]}
+        sizes="(min-width: 768px) 320px, 100vw"
+        class="aspect-4/5 w-full rounded-lg border border-zinc-800 object-cover"
+      />
+      <dl class="space-y-5 rounded-lg border border-zinc-800 p-6">
+        {
+          facts.map((fact) => (
+            <div>
+              <dt class="text-xs font-semibold tracking-wide uppercase text-zinc-400">
+                {fact.label}
+              </dt>
+              <dd class="mt-1 text-sm text-zinc-200">{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
   </div>
 </Section>

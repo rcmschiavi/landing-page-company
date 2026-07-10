@@ -1,9 +1,11 @@
 ---
 import { site } from '../data/site';
+import FloatingSkills from './FloatingSkills.astro';
 ---
 
-<section id="top" class="py-16 md:py-24">
-  <div class="mx-auto max-w-5xl px-6">
+<section id="top" class="relative py-16 md:py-24">
+  <FloatingSkills />
+  <div class="relative mx-auto max-w-5xl px-6">
     <p class="text-sm font-semibold tracking-widest uppercase text-accent">
       {site.role} · Contract & Staff Augmentation
     </p>

@@ -3,6 +3,30 @@ export interface StackGroup {
   items: string[];
 }
 
+/** Labels for the hero's floating-skills cloud. Keep short (≤ ~14 chars) so slots don't overlap. */
+export const highlights: string[] = [
+  'Node.js',
+  'TypeScript',
+  'Python',
+  'Go',
+  'Java',
+  'AWS',
+  'Docker',
+  'Kubernetes',
+  'PostgreSQL',
+  'Redis',
+  'Microservices',
+  'CI/CD',
+  'REST APIs',
+  'Payments',
+  'KYC',
+  'Cybersecurity',
+  'Agentic AI',
+  'RAG',
+  'Event-driven',
+  'Observability',
+];
+
 export const stack: StackGroup[] = [
   {
     label: 'Languages & Runtimes',

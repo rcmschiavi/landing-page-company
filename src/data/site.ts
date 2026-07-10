@@ -22,9 +22,10 @@ export const site = {
   },
 
   nav: [
-    { label: 'Services', href: '#services' },
-    { label: 'Stack', href: '#stack' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'About', href: '#about' },
+    { label: 'Services', href: '/#services' },
+    { label: 'Stack', href: '/#stack' },
+    { label: 'Experience', href: '/#experience' },
+    { label: 'About', href: '/#about' },
+    { label: 'Blog', href: '/blog' },
   ],
 } as const;
