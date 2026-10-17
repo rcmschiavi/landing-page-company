@@ -1,19 +1,42 @@
 ---
 import { site } from '../data/site';
+import { getLang } from '../i18n';
+
+const lang = getLang(Astro.currentLocale);
+
+const copy = {
+  en: {
+    title: 'Have a backend project or a team that needs a hand?',
+    text: 'Tell me about it — I usually reply within one business day.',
+    copyEmail: 'Copy email',
+    copied: 'Copied ✓',
+    copyLabel: `Copy ${site.email} to clipboard`,
+    linkedin: 'Connect on LinkedIn',
+  },
+  pt: {
+    title: 'Tem um projeto de backend ou um time precisando de reforço?',
+    text: 'Me conte sobre ele — costumo responder em até um dia útil.',
+    copyEmail: 'Copiar e-mail',
+    copied: 'Copiado ✓',
+    copyLabel: `Copiar ${site.email} para a área de transferência`,
+    linkedin: 'Conectar no LinkedIn',
+  },
+}[lang];
 ---
 
 <section id="contact" class="scroll-mt-20 py-12 md:py-16">
   <div class="mx-auto max-w-5xl px-6">
     <div class="rounded-2xl border border-zinc-800 bg-zinc-900/50 px-6 py-16 text-center md:px-16">
       <h2 class="text-3xl font-bold tracking-tight text-white md:text-4xl">
-        Have a backend project or a team that needs a hand?
+        {copy.title}
       </h2>
       <p class="mx-auto mt-4 max-w-xl text-lg text-zinc-400">
-        Tell me about it — I usually reply within one business day.
+        {copy.text}
       </p>
       <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
         <a
           href={`mailto:${site.email}`}
+          data-umami-event="email-click"
           class="rounded-md bg-accent px-6 py-3 font-semibold text-zinc-950 transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-white"
         >
           {site.email}
@@ -22,18 +45,31 @@ import { site } from '../data/site';
           type="button"
           id="copy-email"
           data-email={site.email}
+          data-label={copy.copyEmail}
+          data-copied={copy.copied}
+          data-umami-event="copy-email"
           class="min-w-36 cursor-pointer rounded-md border border-zinc-700 px-6 py-3 font-semibold text-zinc-200 transition hover:border-zinc-500 hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
-          aria-label={`Copy ${site.email} to clipboard`}
+          aria-label={copy.copyLabel}
         >
-          Copy email
+          {copy.copyEmail}
         </button>
         <a
           href={site.linkedin}
           target="_blank"
           rel="noopener noreferrer"
+          data-umami-event="linkedin-click"
           class="rounded-md border border-zinc-700 px-6 py-3 font-semibold text-zinc-200 transition hover:border-zinc-500 hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
         >
-          Connect on LinkedIn
+          {copy.linkedin}
+        </a>
+        <a
+          href={site.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-umami-event="github-click"
+          class="rounded-md border border-zinc-700 px-6 py-3 font-semibold text-zinc-200 transition hover:border-zinc-500 hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          GitHub
         </a>
       </div>
     </div>
@@ -43,17 +79,17 @@ import { site } from '../data/site';
 <script>
   const btn = document.getElementById('copy-email');
   btn?.addEventListener('click', async () => {
-    const email = btn.dataset.email ?? '';
+    const { email = '', label = '', copied = '' } = btn.dataset;
     try {
       await navigator.clipboard.writeText(email);
-      btn.textContent = 'Copied ✓';
+      btn.textContent = copied;
     } catch {
       // Clipboard API unavailable — show the address for manual copying.
       btn.textContent = email;
       return;
     }
     setTimeout(() => {
-      btn.textContent = 'Copy email';
+      btn.textContent = label;
     }, 1600);
   });
 </script>

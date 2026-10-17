@@ -1,5 +1,8 @@
 ---
 import { site } from '../data/site';
+import { getLang } from '../i18n';
+
+const lang = getLang(Astro.currentLocale);
 
 const year = new Date().getFullYear();
 ---
@@ -8,7 +11,7 @@ const year = new Date().getFullYear();
   <div
     class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-zinc-400 md:flex-row"
   >
-    <p>© {year} {site.companyName} · {site.ownerName}, {site.role}</p>
+    <p>© {year} {site.companyName} · {site.ownerName}, {site.role[lang]}</p>
     <div class="flex gap-5">
       <a href="/blog" class="transition hover:text-white focus-visible:ring-2 focus-visible:ring-accent">
         Blog
@@ -17,9 +20,19 @@ const year = new Date().getFullYear();
         href={site.linkedin}
         target="_blank"
         rel="noopener noreferrer"
+        data-umami-event="linkedin-click"
         class="transition hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
       >
         LinkedIn
+      </a>
+      <a
+        href={site.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-umami-event="github-click"
+        class="transition hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
+      >
+        GitHub
       </a>
     </div>
   </div>

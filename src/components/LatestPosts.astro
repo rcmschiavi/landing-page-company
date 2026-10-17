@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import Section from './Section.astro';
+import { getLang } from '../i18n';
+import { formatDate } from '../utils/date';
+
+const lang = getLang(Astro.currentLocale);
+
+const copy = {
+  en: { eyebrow: 'Writing', title: 'Latest from the blog', note: '', all: 'All posts' },
+  pt: {
+    eyebrow: 'Blog',
+    title: 'Últimos posts do blog',
+    note: 'Os posts são escritos em inglês.',
+    all: 'Ver todos os posts',
+  },
+}[lang];
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+{
+  posts.length > 0 && (
+    <Section id="writing" eyebrow={copy.eyebrow} title={copy.title}>
+      {copy.note && <p class="-mt-6 mb-8 text-zinc-400">{copy.note}</p>}
+      <ul class="grid gap-6 md:grid-cols-3">
+        {posts.map((post) => (
+          <li>
+            <a
+              href={`/blog/${post.id}/`}
+              hreflang="en"
+              class="flex h-full flex-col rounded-lg border border-zinc-800 bg-zinc-900/50 p-6 transition hover:border-zinc-600"
+            >
+              <time datetime={post.data.pubDate.toISOString()} class="text-sm text-zinc-400">
+                {formatDate(post.data.pubDate, lang)}
+              </time>
+              <h3 lang="en" class="mt-2 text-lg font-semibold text-white">{post.data.title}</h3>
+              {post.data.description && (
+                <p lang="en" class="mt-2 text-sm text-zinc-400">{post.data.description}</p>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a
+        href="/blog"
+        class="mt-8 inline-block text-sm font-semibold text-accent transition hover:underline focus-visible:ring-2 focus-visible:ring-accent"
+      >
+        {copy.all} &rarr;
+      </a>
+    </Section>
+  )
+}
