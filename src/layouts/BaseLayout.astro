@@ -1,40 +1,57 @@
 ---
 import '../styles/global.css';
 import { site } from '../data/site';
+import { getLang, langTag, type Lang } from '../i18n';
 
 interface Props {
   title?: string;
   description?: string;
+  /** URL of this page in each language, for hreflang links. Omit for single-language pages. */
+  alternates?: Partial<Record<Lang, string>>;
 }
 
-const { title = site.seo.title, description = site.seo.description } = Astro.props;
+const lang = getLang(Astro.currentLocale);
+const {
+  title = site.seo[lang].title,
+  description = site.seo[lang].description,
+  alternates,
+} = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/og-image.png', Astro.site);
+const { umamiWebsiteId, domain } = site.analytics;
 
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: site.ownerName,
-  jobTitle: site.role,
+  jobTitle: site.role[lang],
   email: `mailto:${site.email}`,
-  sameAs: [site.linkedin],
+  sameAs: [site.linkedin, site.github],
   worksFor: { '@type': 'Organization', name: site.companyName },
 };
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={langTag[lang]}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {
+      alternates &&
+        Object.entries(alternates).map(([code, path]) => (
+          <link rel="alternate" hreflang={langTag[code as Lang]} href={new URL(path, Astro.site)} />
+        ))
+    }
+    {alternates?.en && <link rel="alternate" hreflang="x-default" href={new URL(alternates.en, Astro.site)} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content={langTag[lang].replace('-', '_')} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -45,6 +62,17 @@ const personSchema = {
     <meta name="twitter:image" content={ogImage} />
 
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    {
+      umamiWebsiteId && (
+        <script
+          is:inline
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id={umamiWebsiteId}
+          data-domains={domain}
+        />
+      )
+    }
   </head>
   <body>
     <slot />

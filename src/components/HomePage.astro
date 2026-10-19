@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './Header.astro';
+import Hero from './Hero.astro';
+import Services from './Services.astro';
+import TechStack from './TechStack.astro';
+import Experience from './Experience.astro';
+import About from './About.astro';
+import LatestPosts from './LatestPosts.astro';
+import Contact from './Contact.astro';
+import Footer from './Footer.astro';
+import { getLang, homePath } from '../i18n';
+
+// Rendered by both src/pages/index.astro and src/pages/pt/index.astro;
+// each section picks its copy from Astro.currentLocale.
+const lang = getLang(Astro.currentLocale);
+const otherLang = lang === 'en' ? 'pt' : 'en';
+---
+
+<BaseLayout alternates={homePath}>
+  <Header alternate={homePath[otherLang]} />
+  <main>
+    <Hero />
+    <Services />
+    <TechStack />
+    <Experience />
+    <About />
+    <LatestPosts />
+    <Contact />
+  </main>
+  <Footer />
+</BaseLayout>

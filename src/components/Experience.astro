@@ -1,9 +1,16 @@
 ---
 import Section from './Section.astro';
 import { experience, earlierRoles } from '../data/experience';
+import { getLang } from '../i18n';
+
+const lang = getLang(Astro.currentLocale);
+const heading = {
+  en: { eyebrow: 'Experience', title: 'Track record' },
+  pt: { eyebrow: 'Experiência', title: 'Trajetória' },
+}[lang];
 ---
 
-<Section id="experience" eyebrow="Experience" title="Track record">
+<Section id="experience" eyebrow={heading.eyebrow} title={heading.title}>
   <ol class="relative space-y-12 border-l border-zinc-800 pl-8">
     {
       experience.map((entry) => (
@@ -15,18 +22,18 @@ import { experience, earlierRoles } from '../data/experience';
           <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <h3 class="text-lg font-semibold text-white">{entry.company}</h3>
             <span class="text-sm text-zinc-400">
-              {entry.domain} · {entry.location}
+              {entry.domain[lang]} · {entry.location[lang]}
             </span>
           </div>
           <div class="mt-1 space-y-0.5">
             {entry.roles.map((role) => (
               <p class="text-sm text-zinc-400">
-                <span class="font-medium text-zinc-200">{role.title}</span> · {role.period}
+                <span class="font-medium text-zinc-200">{role.title}</span> · {role.period[lang]}
               </p>
             ))}
           </div>
           <ul class="mt-4 list-disc space-y-2 pl-5 text-zinc-400 marker:text-zinc-600">
-            {entry.bullets.map((bullet) => (
+            {entry.bullets[lang].map((bullet) => (
               <li>{bullet}</li>
             ))}
           </ul>
@@ -41,5 +48,5 @@ import { experience, earlierRoles } from '../data/experience';
       ))
     }
   </ol>
-  <p class="mt-12 border-t border-zinc-800 pt-6 text-sm text-zinc-400">{earlierRoles}</p>
+  <p class="mt-12 border-t border-zinc-800 pt-6 text-sm text-zinc-400">{earlierRoles[lang]}</p>
 </Section>

@@ -1,40 +1,62 @@
 ---
 import { site } from '../data/site';
+import { getLang, ui } from '../i18n';
 import FloatingSkills from './FloatingSkills.astro';
+
+const lang = getLang(Astro.currentLocale);
+
+const copy = {
+  en: {
+    eyebrow: 'Contract & Staff Augmentation',
+    headline:
+      'I build and modernize the backend systems behind banking, payments, asset management, and other high-demand products.',
+    intro:
+      "I'm a software engineer with 8+ years building production systems in Node.js, Java, Python, and Go — banking APIs, KYC onboarding, payments, and legacy modernization for fintechs.",
+    footnote: `Working remotely from ${site.location.en} · US/EU-friendly hours · Contracting through ${site.companyName}`,
+  },
+  pt: {
+    eyebrow: 'Projetos sob contrato & alocação em times',
+    headline:
+      'Construo e modernizo os sistemas de backend por trás de bancos, pagamentos, gestão de ativos e outros produtos de alta demanda.',
+    intro:
+      'Sou engenheiro de software com mais de 8 anos construindo sistemas em produção com Node.js, Java, Python e Go — APIs bancárias, onboarding de KYC, pagamentos e modernização de sistemas legados para fintechs.',
+    footnote: `Trabalho remoto do ${site.location.pt} · Horários compatíveis com EUA e Europa · Contratação via ${site.companyName}`,
+  },
+}[lang];
 ---
 
 <section id="top" class="relative py-16 md:py-24">
   <FloatingSkills />
   <div class="relative mx-auto max-w-5xl px-6">
     <p class="text-sm font-semibold tracking-widest uppercase text-accent">
-      {site.role} · Contract & Staff Augmentation
+      {site.role[lang]} · {copy.eyebrow}
     </p>
     <h1 class="mt-4 max-w-3xl text-4xl font-bold tracking-tight text-white md:text-6xl">
-      I build and modernize the backend systems behind banking, payments, asset management, and
-      other high-demand products.
+      {copy.headline}
     </h1>
     <p class="mt-6 max-w-2xl text-lg text-zinc-400">
-      I'm a software engineer with 8+ years building production systems in Node.js, Java,
-      Python, and Go — banking APIs, KYC onboarding, payments, and legacy modernization for fintechs.
+      {copy.intro}
     </p>
     <div class="mt-8 flex flex-wrap items-center gap-4">
       <a
         href={`mailto:${site.email}`}
+        data-umami-event="email-click"
         class="rounded-md bg-accent px-6 py-3 font-semibold text-zinc-950 transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-white"
       >
-        Email me
+        {ui[lang].emailMe}
       </a>
       <a
         href={site.linkedin}
         target="_blank"
         rel="noopener noreferrer"
+        data-umami-event="linkedin-click"
         class="rounded-md border border-zinc-700 px-6 py-3 font-semibold text-zinc-200 transition hover:border-zinc-500 hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
       >
         LinkedIn
       </a>
     </div>
     <p class="mt-8 text-sm text-zinc-400">
-      Working remotely from {site.location} · US/EU-friendly hours · Contracting through {site.companyName}
+      {copy.footnote}
     </p>
   </div>
 </section>

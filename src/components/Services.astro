@@ -1,12 +1,19 @@
 ---
 import Section from './Section.astro';
 import { services } from '../data/services';
+import { getLang } from '../i18n';
+
+const lang = getLang(Astro.currentLocale);
+const heading = {
+  en: { eyebrow: 'Services', title: 'What I can do for your team' },
+  pt: { eyebrow: 'Serviços', title: 'O que posso fazer pelo seu time' },
+}[lang];
 ---
 
-<Section id="services" eyebrow="Services" title="What I can do for your team">
+<Section id="services" eyebrow={heading.eyebrow} title={heading.title}>
   <div class="grid gap-6 md:grid-cols-2">
     {
-      services.map((service) => (
+      services[lang].map((service) => (
         <article class="rounded-lg border border-zinc-800 p-6 transition hover:border-zinc-700">
           <h3 class="text-lg font-semibold text-white">{service.title}</h3>
           <p class="mt-3 text-zinc-400">{service.description}</p>
